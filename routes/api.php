@@ -8,6 +8,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('blog', PostController::class)
-    ->parameter('blog', 'post')
-    ->names('posts');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('blog', PostController::class)
+        ->parameter('blog', 'post')
+        ->names('posts');
+});
+
+

@@ -11,6 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
+        abort_if(!auth()->user(), 403);
         return PostResource::collection(Post::all());
     }
 
